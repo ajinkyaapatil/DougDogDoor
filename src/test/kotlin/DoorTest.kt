@@ -21,7 +21,7 @@ class DoorTest {
     }
 
     @Test
-    fun  `should change the state to close when the door is closed`(){
+    fun `should change the state to close when the door is closed`(){
         val door = Door()
 
         door.open()
@@ -29,4 +29,5 @@ class DoorTest {
 
         assertFalse { door.isOpen() }
     }
+
 }
