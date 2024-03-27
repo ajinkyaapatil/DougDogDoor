@@ -1,26 +1,45 @@
+import org.example.BarkRecognise
 import org.example.Door
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import kotlin.concurrent.thread
 import kotlin.test.assertEquals
 
 class DoorTest {
-    @Test
-    fun `should open the door provided a signal to open the door`(){
-        val door = Door()
 
+    private lateinit var barkRecognise: BarkRecognise
+    private lateinit var door : Door
+
+    @BeforeEach
+    fun setup() {
+        barkRecognise = BarkRecognise()
+        door = Door(barkRecognise)
+    }
+
+    @Test
+    fun `should open the door provided a signal to open the door`() {
         door.open()
 
         assertEquals(true, door.isOpen())
     }
 
     @Test
-    fun `should close the door automatically after 5 seconds`(){
-        val door = Door()
+    fun `should open the door when dog barks`() {
+        barkRecognise.barked = true
 
-        door.open()
+        Thread.sleep(100)
 
-        Thread.sleep(5100)
-
-        assertEquals(false, door.isOpen())
+        assertEquals(true, door.isOpen())
     }
+
+    @Test
+    fun `should close the door automatically after 2 seconds`() {
+
+        barkRecognise.barked = true
+
+        Thread.sleep(2_100)
+        assertEquals(false, door.isOpen())
+
+    }
+
+
 }

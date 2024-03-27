@@ -1,11 +1,21 @@
 package org.example
-import kotlinx.coroutines.*
-import java.util.concurrent.TimeUnit
 import kotlin.concurrent.thread
 
-class Door {
+class Door(barkRecognise: BarkRecognise) {
 
     private var open = false
+
+    init {
+        thread {
+            for(i in 1..1000){
+                Thread.sleep(50)
+                if(barkRecognise.barked){
+                    open()
+                    break
+                }
+            }
+        }
+    }
 
     private fun close(){
         open = false
@@ -14,10 +24,10 @@ class Door {
     fun open() {
         open = true
         thread {
-            Thread.sleep(5_000)
+            Thread.sleep(2_000)
+            println("Hit")
             close()
         }
-
     }
 
     fun isOpen() = open
