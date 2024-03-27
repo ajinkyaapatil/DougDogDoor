@@ -1,6 +1,9 @@
 package org.example
 
 class Door {
-    private val open = false
-    fun isOpen() = open
+    private var openState = false
+    fun isOpen() = openState
+    fun open() {
+        openState = true
+    }
 }
