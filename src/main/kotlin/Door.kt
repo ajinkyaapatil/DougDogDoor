@@ -6,4 +6,8 @@ class Door {
     fun open() {
         openState = true
     }
+
+    fun close() {
+        openState = false
+    }
 }
