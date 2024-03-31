@@ -1,16 +1,13 @@
 package org.example
 
-import kotlinx.coroutines.delay
-import kotlin.concurrent.thread
-
-class Remote(private val door: Door) {
+class Remote(private val dougDoor: DougDoor) {
     fun press(): Boolean {
-        if(door.isOpen()){
-            door.close()
+        if(dougDoor.isOpen()){
+            dougDoor.close()
             return false
         }
         else {
-            door.open()
+            dougDoor.open()
             return true
         }
     }

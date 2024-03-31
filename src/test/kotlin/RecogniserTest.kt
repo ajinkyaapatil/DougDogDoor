@@ -1,15 +1,15 @@
-import org.example.Door
+import org.example.DougDoor
 import org.example.Recogniser
 import org.junit.jupiter.api.Test
 import kotlin.test.assertTrue
 
 class RecogniserTest {
     @Test
-    fun `should open the door when door barks`(){
+    fun `should open the door when dog barks`(){
 
-        val door = Door()
+        val dougDoor = DougDoor()
 
-        val recogniser = Recogniser(door)
+        val recogniser = Recogniser(dougDoor)
 
         val doorState = recogniser.recognise()
 

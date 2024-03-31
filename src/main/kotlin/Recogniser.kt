@@ -1,8 +1,8 @@
 package org.example
 
-class Recogniser(val door: Door) {
+class Recogniser(private val dougDoor: DougDoor) {
     fun recognise(): Boolean {
-        door.open()
+        dougDoor.open()
         return true
     }
 
