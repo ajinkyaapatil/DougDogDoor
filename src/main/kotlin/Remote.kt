@@ -1,13 +1,13 @@
-package org.example
+import Door
 
-class Remote(private val dougDoor: DougDoor) {
+class Remote(private val door: Door) {
     fun press(): Boolean {
-        if(dougDoor.isOpen()){
-            dougDoor.close()
+        if(door.isOpen()){
+            door.close()
             return false
         }
         else {
-            dougDoor.open()
+            door.open()
             return true
         }
     }

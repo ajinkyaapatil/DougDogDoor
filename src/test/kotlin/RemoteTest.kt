@@ -1,15 +1,16 @@
-import org.example.DougDoor
-import org.example.Remote
 import org.junit.jupiter.api.Test
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class RemoteTest {
+
+    private val interval = 5000L
     @Test
     fun `pressing the remote button opens the door when initially closed`() {
 
-        val dougDoor = DougDoor()
-        val remote = Remote(dougDoor)
+        val door = Door { todo -> task(todo, interval) }
+
+        val remote = Remote(door)
 
         val doorState = remote.press()
 
@@ -20,8 +21,9 @@ class RemoteTest {
     @Test
     fun `pressing the remote button closes the door when door is open`() {
 
-        val dougDoor = DougDoor()
-        val remote = Remote(dougDoor)
+        val door = Door { todo -> task(todo, interval) }
+
+        val remote = Remote(door)
 
         remote.press()
         val finalDoorState = remote.press()
