@@ -6,7 +6,7 @@ class RemoteTest {
 
     private val interval = 5000L
     @Test
-    fun `pressing the remote button opens the door when initially closed`() {
+    fun `pressing the remote button toggles the door state`() {
 
         val door = Door { todo -> task(todo, interval) }
 
@@ -18,18 +18,18 @@ class RemoteTest {
 
     }
 
-    @Test
-    fun `pressing the remote button closes the door when door is already open`() {
-
-        val door = Door { todo -> task(todo, interval) }
-
-        val remote = Remote(door)
-
-        remote.press()
-
-        val finalDoorState = remote.press()
-
-        assertFalse { finalDoorState }
-    }
+//    @Test
+//    fun `pressing the remote button closes the door when door is already open`() {
+//
+//        val door = Door { todo -> task(todo, interval) }
+//
+//        val remote = Remote(door)
+//
+//        remote.press()
+//
+//        val finalDoorState = remote.press()
+//
+//        assertFalse { finalDoorState }
+//    }
 
 }

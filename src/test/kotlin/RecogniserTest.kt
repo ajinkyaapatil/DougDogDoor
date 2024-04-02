@@ -6,7 +6,7 @@ class RecogniserTest {
 
     private val interval = 5000L
     @Test
-    fun `should open the door when dog barks in correct sound`(){
+    fun `should recognize when dog barks in correct sound`(){
 
         val door = Door { todo -> task(todo, interval) }
 
@@ -20,7 +20,7 @@ class RecogniserTest {
     }
 
     @Test
-    fun `should not open door when dog barks in incorrect sound`(){
+    fun `should not recognize when dog barks in incorrect sound`(){
         val door = Door { todo -> task(todo, interval) }
 
         val recogniser = Recogniser(door)

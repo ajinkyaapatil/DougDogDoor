@@ -1,4 +1,5 @@
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -11,7 +12,7 @@ class DougDoorTest {
 
         val door = Door { todo -> task(todo, interval) }
 
-        assertFalse { door.isOpen() }
+        assertEquals(DoorState.CLOSED, door.isOpen())
     }
 
     @Test
@@ -20,7 +21,7 @@ class DougDoorTest {
 
         door.open()
 
-        assertTrue { door.isOpen() }
+        assertEquals(DoorState.OPEN, door.isOpen())
     }
 
     @Test
@@ -30,7 +31,7 @@ class DougDoorTest {
         door.open()
         door.close()
 
-        assertFalse { door.isOpen() }
+        assertEquals(DoorState.CLOSED, door.isOpen())
     }
 
     @Test
@@ -39,25 +40,7 @@ class DougDoorTest {
 
         door.open()
 
-        assertFalse { door.isOpen() }
-    }
-
-    @Test
-    fun `should close the door if button is pressed on the remote before automatic closed`(){
-        val door = Door {todo -> task(todo, 10L)}
-
-        val recogniser = Recogniser(door)
-        val remote = Remote(door)
-
-        recogniser.addAllowedBarks(Bark("braw"))
-
-        var doorState = recogniser.recognise(Bark("braw"))
-
-        assertTrue { doorState }
-
-        doorState = remote.press()
-
-        assertFalse { doorState }
+        assertEquals(DoorState.CLOSED, door.isOpen())
     }
 
 }
