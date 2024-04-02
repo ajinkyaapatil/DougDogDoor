@@ -10,6 +10,11 @@ class Door(private val task: (() -> Unit) -> Unit) {
         closeAutomatically()
     }
 
+    fun toggle() : Boolean{
+        openState = !openState
+        return openState
+    }
+
     private fun closeAutomatically() {
         task { close() }
     }

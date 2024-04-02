@@ -35,11 +35,29 @@ class DougDoorTest {
 
     @Test
     fun `should close the door automatically`(){
-        val door = Door { todo -> task2(todo) }
+        val door = Door { todo -> task(todo) }
 
         door.open()
 
         assertFalse { door.isOpen() }
+    }
+
+    @Test
+    fun `should close the door if button is pressed on the remote before automatic closed`(){
+        val door = Door {todo -> task(todo, 10L)}
+
+        val recogniser = Recogniser(door)
+        val remote = Remote(door)
+
+        recogniser.addAllowedBarks(Bark("braw"))
+
+        var doorState = recogniser.recognise(Bark("braw"))
+
+        assertTrue { doorState }
+
+        doorState = remote.press()
+
+        assertFalse { doorState }
     }
 
 }

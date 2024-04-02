@@ -7,6 +7,6 @@ fun task (todo: () -> Unit, interval: Long) {
     }
 }
 
-fun task2 (todo : () -> Unit) {
+fun task (todo : () -> Unit) {
     todo()
 }

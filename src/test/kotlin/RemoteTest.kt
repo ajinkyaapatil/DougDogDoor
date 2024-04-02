@@ -19,13 +19,14 @@ class RemoteTest {
     }
 
     @Test
-    fun `pressing the remote button closes the door when door is open`() {
+    fun `pressing the remote button closes the door when door is already open`() {
 
         val door = Door { todo -> task(todo, interval) }
 
         val remote = Remote(door)
 
         remote.press()
+
         val finalDoorState = remote.press()
 
         assertFalse { finalDoorState }
