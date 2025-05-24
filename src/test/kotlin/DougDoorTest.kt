@@ -1,7 +1,4 @@
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 class DougDoorTest {
 
@@ -25,16 +22,6 @@ class DougDoorTest {
     }
 
     @Test
-    fun `should change the state to close when the door is closed`(){
-        val door = Door { todo -> task(todo, interval) }
-
-        door.open()
-        door.close()
-
-        assertEquals(DoorState.CLOSED, door.isOpen())
-    }
-
-    @Test
     fun `should close the door automatically`(){
         val door = Door { todo -> task(todo) }
 
@@ -43,4 +30,12 @@ class DougDoorTest {
         assertEquals(DoorState.CLOSED, door.isOpen())
     }
 
+    @Test
+    fun `should change the state with toggle function`(){
+        val door = Door { todo -> task(todo) }
+
+        val doorState = door.toggle()
+
+        assertFalse { doorState }
+    }
 }

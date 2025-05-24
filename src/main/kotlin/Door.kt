@@ -2,7 +2,7 @@ class Door(private val task: (() -> Unit) -> Unit) {
 
     private var openState = DoorState.CLOSED
     fun isOpen() = openState
-    fun close() {
+    private fun close() {
         openState = DoorState.CLOSED
     }
 
@@ -13,11 +13,11 @@ class Door(private val task: (() -> Unit) -> Unit) {
 
     fun toggle(): Boolean {
         if(openState == DoorState.OPEN){
-            openState = DoorState.CLOSED
+            open()
             return true
         }
         else {
-            openState = DoorState.CLOSED
+            close()
             return false
         }
     }
